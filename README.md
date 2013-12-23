@@ -1,9 +1,9 @@
 km-bbedit-autosave
 ==================
 
-BBEdit includes an “auto-save” function, but it is intended primarily as “crash recovery” rather than the equivalent of pressing <kbd>⌘</kbd>  + <kbd>S</kbd> every *X* minutes.[^citation] 
+BBEdit includes an “auto-save” function, but it is intended primarily as “crash recovery” rather than the equivalent of pressing <kbd>⌘</kbd>  + <kbd>S</kbd> every *X* minutes.[^citation]
 
-In order to avoid any risk of lost data, I use a [Keyboard Maestro] with BBEdit which I will first show, and then explain:
+In order to avoid any risk of lost data, I use a [Keyboard Maestro] macro with BBEdit, which I will first show, and then explain:
 
 ![Keyboard Maestro macro for auto-saving BBEdit](BBEdit-Auto-Save.jpg)
 
@@ -19,14 +19,14 @@ The bottom part checks for additional conditions:
 
 The first should seem obvious, but the second might not: the Save _button_ only appears when the “Save As” dialog box is open, usually when a file has not been named. If you save when that dialog box is open, you will get a saved file with a name like “Untitled.txt” which I find far too annoying to allow.
 
-If both of those conditions are met, then the keyboard command <kbd>⌘</kbd>  + <kbd>S</kbd> is given which will cause the document to be saved. 
+If both of those conditions are met, then the keyboard command <kbd>⌘</kbd>  + <kbd>S</kbd> is given which will cause the document to be saved.
 
 *	You could also tell Keyboard Maestro to select the menu item File » Save but I prefer the keyboard shortcut.
 *	If the file has not already been named, this will bring up the “Save As” dialog box. This might cause an interruption when you are creating a new file, which might be annoying, but less so than losing unsaved data. However, if you prefer *not* to be interrupted and to only have files auto-saved *after* you have named them, you can simply add another condition to Keyboard Maestro, telling it not to save if the *title* of the front window starts with the words “untitled text” as shown here:
 
 ![A more polite version of the macro](BBEdit-Auto-Save-polite.jpg)
 
-Note that the actual condition for the front window title is actually written as `untitled text.*` which will match `untitled text`  as well as `untitled text 2` and so forth, which is how BBEdit names unsaved files. 
+Note that the actual condition for the front window title is actually written as `untitled text.*` which will match `untitled text`  as well as `untitled text 2` and so forth, which is how BBEdit names unsaved files.
 
 I refer to this as the “polite” version of the macro since it refuses to interrupt you, even for your own good.
 
